@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Verificar Key</title>
+<style>
+body {
+    background:black;
+    color:#00ff66;
+    font-family:Arial;
+    text-align:center;
+}
+</style>
+</head>
+<body>
+<h1>Verificar Key</h1>
+<input id="keyInput" placeholder="Cole sua key aqui" style="width:250px;">
+<button onclick="verificar()">Verificar</button>
+
+<p id="result"></p>
+
+<script>
+function verificar(){
+    let stored = localStorage.getItem("generatedKey");
+    let current = document.getElementById("keyInput").value;
+
+    if(current === stored){
+        document.getElementById("result").innerText="Key válida!";
+    } else {
+        document.getElementById("result").innerText="Key inválida!";
+    }
+}
+</script>
+</body>
+</html>
