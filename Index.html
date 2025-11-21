@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gerar Key</title>
+<style>
+body {
+    background:black;
+    color:#00ff66;
+    font-family:Arial;
+    text-align:center;
+}
+#audioVis {
+    width:300px;
+    height:100px;
+    margin:20px auto;
+    background:#002800;
+    border-radius:10px;
+}
+</style>
+</head>
+<body>
+<h1>Gerador de Key</h1>
+<button onclick="gerarKey()">Gerar Key</button>
+
+<div id="keyBox" style="margin-top:20px; display:none;"></div>
+<button id="copyBtn" style="display:none;" onclick="copiar()">Copiar</button>
+
+<div id="audioVis"></div>
+
+<audio id="sound" src="tekit.mp3"></audio>
+
+<script>
+let lastKey = "";
+function gerarKey() {
+    let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let key = "";
+    for (let i = 0; i < 40; i++) key += chars.charAt(Math.floor(Math.random()*chars.length));
+    lastKey = key;
+
+    document.getElementById("keyBox").innerText = key;
+    document.getElementById("keyBox").style.display="block";
+    document.getElementById("copyBtn").style.display="inline-block";
+
+    let audio=document.getElementById("sound");
+    audio.pause();
+    audio.currentTime=0;
+    audio.play();
+}
+function copiar(){
+    navigator.clipboard.writeText(lastKey);
+}
+</script>
+</body>
+</html>
